@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <style>
+        /* Estilos para centrar el carrusel en la página */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Estilos del carrusel */
+        .carousel {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            object-fit: cover;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        /* Estilos de los controles del carrusel */
+        .controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .controls button:hover {
+            background-color: #9a30cf;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor del carrusel -->
+    <div class="carousel">
+        <img src="img/colin-horn-fR9U2S31Exs-unsplash.jpg" class="active" alt="Imagen 1">
+        <img src="img/roberto-nickson-lGCfApDzhYw-unsplash.jpg" alt="Imagen 2">
+        <img src="img/visar-neziri-CAQvwCoHLhw-unsplash.jpg" alt="Imagen 3">
+    </div>
+    <!-- Controles del carrusel -->
+    <div class="controls">
+        <button onclick="anterior()">Anterior</button>
+        <button onclick="siguiente()">Siguiente</button>
+    </div>
+
+    <!-- Script JavaScript para la funcionalidad del carrusel -->
+    <script>
+        // Variable para almacenar el índice actual de la imagen
+        let indice = 0;
+        // Selecciona todas las imágenes del carrusel
+        const imagenes = document.querySelectorAll('.carousel img');
+
+        // Función para mostrar la imagen en el índice actual
+        function mostrarImagen(indice) {
+            // Oculta todas las imágenes
+            imagenes.forEach(img => img.classList.remove('active'));
+            // Muestra la imagen en el índice actual
+            imagenes[indice].classList.add('active');
+        }
+
+        // Función para mostrar la imagen anterior
+        function anterior() {
+            // Decrementa el índice y muestra la imagen anterior
+            indice = (indice - 1 + imagenes.length) % imagenes.length;
+            mostrarImagen(indice);
+        }
+
+        // Función para mostrar la imagen siguiente
+        function siguiente() {
+            // Incrementa el índice y muestra la imagen siguiente
+            indice = (indice + 1) % imagenes.length;
+            mostrarImagen(indice);
+        }
+    </script>
+</body>
+</html>
